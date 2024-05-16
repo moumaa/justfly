@@ -64,14 +64,24 @@ class Flight extends Model
 
     public function getFlightTimeAttribute()
     {
+        //get time difference between the arrival and the departure
+        $timeFirst  = strtotime($this->departure_time);
+        $timeSecond = strtotime($this->arrival_time);
+        $differenceInSeconds = $timeSecond - $timeFirst;
+
+        //get time difference between the two timezones
         $departureTimeZone = new DateTimeZone($this->departedFromAirport->timezone);
-        $departureTime = new DateTime($this->departure_time, $departureTimeZone);
-
+        $departureTime = new DateTime('now', $departureTimeZone);
         $arrivalTimeZone = new DateTimeZone($this->arrivedAtAirport->timezone);
-        $arrivalTime = new DateTime($this->arrival_time, $arrivalTimeZone);
+        $arrivalTime = new DateTime('now', $arrivalTimeZone);
 
-        $interval = $departureTime->diff($arrivalTime);
+        $departureTimeOffset = $departureTime->getOffset();
+        $arrivalTimeOffset = $arrivalTime->getOffset();
+        $intervalForTimeZoneInSeconds = $arrivalTimeOffset - $departureTimeOffset;
 
-        return $interval->format('%H:%i');
+
+        $totalFlightTimeInSeconds = $differenceInSeconds-$intervalForTimeZoneInSeconds;
+
+        return gmdate("H:i:s", $totalFlightTimeInSeconds);
     }
 }
