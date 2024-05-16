@@ -109,7 +109,7 @@ class SearchTripService
             });
         }
 
-        if ($departureTrips->get()->isNotEmpty() && $arrivalTrips->get()->isNotEmpty()) {
+        if ($departureTrips->get()->isNotEmpty() || $arrivalTrips->get()->isNotEmpty()) {
             return $departureTrips->get()->merge($arrivalTrips->get());
         }
 
