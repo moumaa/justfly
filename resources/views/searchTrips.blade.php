@@ -114,12 +114,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_1">
+                            <input type="text" class="form-control" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_1">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_1" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_1">
+                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_1" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_1">
                         </div>
 
                         <div class="form-group col-3">
@@ -416,6 +416,9 @@
 
             tripTypeSelector.change(function() {
 
+                $(".trip_type_menu input").each(function() {
+                    this.value = "";
+                });
                 $(".trip_type_menu").hide();
                 $(".trip_type_menu input").prop( "disabled", true );
 

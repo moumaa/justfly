@@ -50,9 +50,10 @@ class SearchTripService
 
     /**
      * @param array $requestData
-     * @return Collection
+     * @return \Illuminate\Support\Collection
      */
-    public function getRoundTripTrips(Array $requestData): Collection {
+    public function getRoundTripTrips(Array $requestData): \Illuminate\Support\Collection
+    {
         $departureAirport = $requestData['departure_airport'];
         $arrivalAirport = $requestData['arrival_airport'];
         $airlineCode = $requestData['airline_code'];
@@ -80,6 +81,9 @@ class SearchTripService
             $departureTrips = $departureTrips->whereHas('flights.airline', function($query) use ($airlineCode) {
                 $query->where('iata_code', $airlineCode);
             });
+            $arrivalTrips = $arrivalTrips->whereHas('flights.airline', function($query) use ($airlineCode) {
+                $query->where('iata_code', $airlineCode);
+            });
         }
 
         if ($departureAirport != null) {
@@ -92,11 +96,6 @@ class SearchTripService
                 $query->where('code', $departureAirport);
             });
         }
-        if ($airlineCode != null) {
-            $arrivalTrips = $arrivalTrips->whereHas('flights.airline', function($query) use ($airlineCode) {
-                $query->where('iata_code', $airlineCode);
-            });
-        }
 
         if ($departureDate != null) {
             $departureTrips = $departureTrips->whereHas('flights', function($query) use ($departureDate) {
@@ -106,11 +105,15 @@ class SearchTripService
 
         if ($returnDate != null) {
             $arrivalTrips = $arrivalTrips->whereHas('flights', function($query) use ($returnDate) {
-                $query->whereDate('departure_time', $returnDate);
+                $query->whereDate('arrival_time', $returnDate);
             });
         }
 
-        return $departureTrips->get()->merge($arrivalTrips->get());
+        if ($departureTrips->get()->isNotEmpty() && $arrivalTrips->get()->isNotEmpty()) {
+            return $departureTrips->get()->merge($arrivalTrips->get());
+        }
+
+        return collect();
     }
 
     /**

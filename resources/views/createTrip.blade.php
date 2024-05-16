@@ -20,7 +20,7 @@
 
                     <div class="form-group col-4" style ="width: 50%; margin: 10px auto;">
                         <label>Flights</label>
-                        <input type="text" class="form-control" placeholder="Flight 3 digit number(s) separated by commas" name="flights" required>
+                        <input type="text" class="form-control" placeholder="Flight number(s) separated by commas" name="flights" required>
                     </div>
 
                     <div class="form-group col-4" style ="width: 50%; margin: 10px auto;">
@@ -47,12 +47,12 @@
             <div>
                 <div class="form-group col-4" style ="width: 50%; margin: 10px auto;">
                     <label>Departure Airport</label>
-                    <input type="text" class="form-control" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport">
+                    <input type="text" class="form-control" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport">
                 </div>
 
                 <div class="form-group col-4" style ="width: 50%; margin: 10px auto;">
                     <label>Arrival Airport</label>
-                    <input type="text" class="form-control" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport">
+                    <input type="text" class="form-control" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport">
                 </div>
 
                 <div class="form-group col-4" style ="width: 50%; margin: 10px auto;">
