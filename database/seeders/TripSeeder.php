@@ -12,7 +12,7 @@ class TripSeeder extends Seeder
      */
     public function run(): void
     {
-        Trip::factory(20)->create([
+        Trip::factory(50)->create([
             'trip_type' => 'one way'
         ]);
     }

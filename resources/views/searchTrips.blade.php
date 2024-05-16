@@ -27,12 +27,12 @@
                 <div class="row trip_type_menu one_way_menu" style ="width: 50%; margin:auto;">
                     <div class="form-group col-3">
                         <label>Departure Airport</label>
-                        <input type="text" class="form-control" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport">
+                        <input type="text" class="form-control" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport">
                     </div>
 
                     <div class="form-group col-3">
                         <label>Arrival Airport</label>
-                        <input type="text" class="form-control" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport">
+                        <input type="text" class="form-control" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport">
                     </div>
 
                     <div class="form-group col-6">
@@ -44,12 +44,12 @@
                 <div class="row trip_type_menu round_trip_menu" style ="width: 50%; margin:auto; display:none">
                     <div class="form-group col-3">
                         <label>Departure Airport</label>
-                        <input type="text" class="form-control" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport">
+                        <input type="text" class="form-control" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport">
                     </div>
 
                     <div class="form-group col-3">
                         <label>Arrival Airport</label>
-                        <input type="text" class="form-control" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport">
+                        <input type="text" class="form-control" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport">
                     </div>
 
                     <div class="form-group col-3">
@@ -68,12 +68,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" id="open_jaw_departure_airport_flight_1" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_1">
+                            <input type="text" class="form-control" id="open_jaw_departure_airport_flight_1" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_1">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_1">
+                            <input type="text" class="form-control" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_1">
                         </div>
 
                         <div class="form-group col-3">
@@ -89,12 +89,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_2">
+                            <input type="text" class="form-control" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_2">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" id="open_jaw_arrival_airport_flight_2" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_2">
+                            <input type="text" class="form-control" id="open_jaw_arrival_airport_flight_2" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_2">
                         </div>
 
                         <div class="form-group col-3">
@@ -135,12 +135,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_2" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_2">
+                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_2" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_2">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_2" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_2">
+                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_2" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_2">
                         </div>
 
                         <div class="form-group col-3">
@@ -156,12 +156,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_3" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_3">
+                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_3" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_3">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_3" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_3">
+                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_3" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_3">
                         </div>
 
                         <div class="form-group col-3">
@@ -177,12 +177,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_4" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_4">
+                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_4" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_4">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_4" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_4">
+                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_4" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_4">
                         </div>
 
                         <div class="form-group col-3">
@@ -198,12 +198,12 @@
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
-                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_5" placeholder="From" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_5">
+                            <input type="text" class="form-control" id="multi_city_departure_airport_flight_5" placeholder="Code" value="{{$search['departure_airport'] ?? ''}}" name="departure_airport_flight_5">
                         </div>
 
                         <div class="form-group col-3">
                             <label>Arrival Airport</label>
-                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_5" placeholder="To" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_5">
+                            <input type="text" class="form-control" id="multi_city_arrival_airport_flight_5" placeholder="Code" value="{{$search['arrival_airport'] ?? ''}}" name="arrival_airport_flight_5">
                         </div>
 
                         <div class="form-group col-3">
