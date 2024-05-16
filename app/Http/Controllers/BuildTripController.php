@@ -83,10 +83,10 @@ class BuildTripController
         } elseif (count($flightIds) == 2 && $tripType == config('enums.trip_types.round_trip')) {
             $flights = Flight::whereIn('id', $flightIds)->orderBy('departure_time')->get();
             $message = $this->buildTripService->buildRoundTripTrip($flights, $tripType);
-        } elseif (count($flightIds) == 2 && $tripType = config('enums.trip_types.open_jaw')) {
+        } elseif (count($flightIds) == 2 && $tripType == config('enums.trip_types.open_jaw')) {
             $flights = Flight::whereIn('id', $flightIds)->orderBy('departure_time')->get();
             $message = $this->buildTripService->buildOpenJawTrip($flights, $tripType);
-        } elseif (count($flightIds) > 1 && count($flightIds) <=  5 && $tripType = config('enums.trip_types.multi_city')) {
+        } elseif (count($flightIds) > 1 && count($flightIds) <=  5 && $tripType == config('enums.trip_types.multi_city')) {
             $flights = Flight::whereIn('id', $flightIds)->orderBy('departure_time')->get();
             $message = $this->buildTripService->buildMultiCityTrip($flights, $tripType);
         } else {

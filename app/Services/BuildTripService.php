@@ -111,12 +111,12 @@ class BuildTripService
 
         // Make sure that the connected flights are humanly possible.
         // The following flight cannot be departing before the previous flight arrives.
-
-        for ($i = 1; $i < count($flights); $i++) {
+        $validFlightConnectionTiming = false;
+        for ($i = 1; $i < count($flights)-1; $i++) {
             $validFlightConnectionTiming = $flights[$i]->arrival_time < $flights[$i-1]->departure_time;
 
             if (!$validFlightConnectionTiming) {
-                break;
+                return false;
             }
         }
 
@@ -175,8 +175,8 @@ class BuildTripService
 
         try {
             // make sure the flights form a A->B, C->A pattern
-            $isValidOpenJawTrip = $flights[0]->arrival_airport_id != $flights[1]->departure_airport_id &&
-                $flights[1]->arrival_airport_id == $flights[0]->departure_airport_id;
+            $isValidOpenJawTrip = $flights[0]->arrival_airport_id == $flights[1]->departure_airport_id &&
+                $flights[1]->arrival_airport_id != $flights[0]->departure_airport_id;
 
             if (!$isValidOpenJawTrip) {
                 return ['error' => 'Not a valid open jaw trip.'];
@@ -186,7 +186,7 @@ class BuildTripService
                 return ['error' => 'Flight timings not possible. Departure occurs before arrival of previous flight'];
             }
 
-            DB::transaction(function () use ($flights, $tripType) {
+            DB::transaction(function () use ($flights, $tripType, &$newTrip) {
 
                 $newTrip = Trip::create([
                     'trip_type' => $tripType
@@ -212,12 +212,11 @@ class BuildTripService
      * @return array|string[]|null
      */
     public function buildMultiCityTrip(Collection $flights, string $tripType, $newTrip = null): array|null {
-
         try {
             // make sure the flights form a A->B, B->C, C->D, etc pattern
-            for ($i = 0; $i < count($flights); $i++) {
-                $validFlightConnection = $flights[$i]->arrival_airport_id != $flights[$i+1]->departure_airport_id &&
-                    $flights[$i+1]->arrival_airport_id == $flights[$i]->departure_airport_id;
+            for ($i = 0; $i < count($flights)-1; $i++) {
+                $validFlightConnection = $flights[$i]->arrival_airport_id == $flights[$i+1]->departure_airport_id &&
+                    $flights[$i+1]->arrival_airport_id != $flights[$i]->departure_airport_id;
 
                 if (!$validFlightConnection) {
                     return ['error' => 'Not a valid open multi city trip. One or more flights are not connected'];
@@ -228,8 +227,8 @@ class BuildTripService
                 return ['error' => 'Flight timings not possible. Departure occurs before arrival of previous flight'];
             }
 
-            DB::transaction(function () use ($flights, $tripType) {
-                for ($i = 0; $i < count($flights); $i++) {
+            DB::transaction(function () use ($flights, $tripType, &$newTrip) {
+                for ($i = 0; $i < count($flights)-1; $i++) {
                     if ($flights[$i]->arrival_airport_id != $flights[$i+1]->departure_airport_id) {
                         throw new \Exception('Arrival airport for flight ' . $flights[$i]->number
                             . ' does not match departure airport for flight ' . $flights[$i+1]->number);
@@ -239,7 +238,6 @@ class BuildTripService
                 $newTrip = Trip::create([
                     'trip_type' => $tripType
                 ]);
-
                 foreach($flights as $flight) {
                     TripFlight::create([
                         'trip_id' => $newTrip->id,

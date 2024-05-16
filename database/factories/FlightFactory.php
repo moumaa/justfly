@@ -18,7 +18,7 @@ class FlightFactory extends Factory
      */
     public function definition(): array
     {
-        $departureDate = $this->faker->dateTimeBetween('+1 days', '+400 days');
+        $departureDate = $this->faker->dateTimeBetween('+1 days', '+200 days');
         $clonedDepartureDate = clone $departureDate;
         $clonedDepartureDate1 = clone $departureDate;
         $clonedDepartureDate2 = clone $departureDate;
@@ -26,12 +26,19 @@ class FlightFactory extends Factory
         $clonedHigherEndDepartureDate = $clonedDepartureDate2->modify('+18 hours');
         $arrivalDate = $this->faker->dateTimeBetween($clonedLowerEndDepartureDate, $clonedHigherEndDepartureDate);
 
+        $departureAirportId = Airport::all()->random()->id;
+        $arrivalAirportId = Airport::all()->random()->id;
+
+        if ($departureAirportId == $arrivalAirportId) {
+            $arrivalAirportId = Airport::all()->random()->id;
+        }
+
         return [
             'airline_id' => Airline::all()->random()->id,
             'number' => fake()->unique()->numberBetween(100,5000),
-            'departure_airport_id' => Airport::all()->random()->id,
+            'departure_airport_id' => $departureAirportId,
             'departure_time' => $clonedDepartureDate,
-            'arrival_airport_id' => Airport::all()->random()->id,
+            'arrival_airport_id' => $arrivalAirportId,
             'arrival_time' => $arrivalDate,
             'price' => $this->faker->numberBetween(100,1000),
         ];

@@ -64,6 +64,7 @@
                 </div>
 
                 <div class="row trip_type_menu open_jaw_menu" style ="width: 50%; margin:auto; display:none">
+                    <p style="text-align:center; background-color: lightpink; padding:5px; border-radius: 5px;">note: only the trip type and airline code fields work for open jaw search</p>
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
@@ -109,6 +110,7 @@
                 </div>
 
                 <div class="trip_type_menu multi_city_menu" style="width: 50%; margin:auto;display:none">
+                    <p style="text-align:center; background-color: lightpink; padding:5px; border-radius: 5px;">note: only the trip type and airline code fields work for multi city search</p>
                     <div class="row">
                         <div class="form-group col-3">
                             <label>Departure Airport</label>
