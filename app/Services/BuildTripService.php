@@ -67,7 +67,8 @@ class BuildTripService
         if (count($flights) == 0) {
             throw new \Exception('Flights missing.');
         }
-        if ($trip->created_at > $flights[0]->departure_time || $trip->created_at->modify('+1 year') < $flights[0]->departure_time) {
+        $clonedTripCreateAt = clone $trip->created_at;
+        if ($trip->created_at > $flights[0]->departure_time || $clonedTripCreateAt->modify('+1 year') < $flights[0]->departure_time) {
             throw new \Exception('A trip MUST depart after creation time at the earliest or 365 days after creation time at the latest');
         }
     }

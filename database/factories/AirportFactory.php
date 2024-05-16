@@ -17,10 +17,14 @@ class AirportFactory extends Factory
      */
     public function definition(): array
     {
+        $location = Location::all()->random();
         return [
             'code' => fake()->regexify('/[A-Z]{3}/'),
-            'city_id' => Location::factory()->create()->id,
-            'name' => fake()->name()
+            'city_id' => $location->id,
+            'name' => fake()->name(),
+            'latitude' => fake()->latitude(),
+            'longitude' => fake()->longitude(),
+            'timezone' => \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $location->country_code)[0]
         ];
     }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('airlines', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('iata_code')->nullable(false);
-            $table->string('code')->nullable(false);
+            $table->string('name')->nullable(false);
         });
     }
 
