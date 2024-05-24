@@ -24,9 +24,16 @@ Then do the following.
 composer install
 ```
 
+Copy the .env.example file and create the .env file.
+
+Run the following command to generate the encryption key.
+
+```
+php artisan key:generate
+```
 ### Database
 
-Install MYSQL. Setup database with your database info (datbase name, your username and your password).
+Install MYSQL. Setup database with your database info (database name, your username and your password).
 
 ### Migrations
 
