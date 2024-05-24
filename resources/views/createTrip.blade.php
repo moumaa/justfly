@@ -189,4 +189,11 @@
             color: #4478c2;
         }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('input[type=date]').attr({"min" : new Date().toISOString().split('T')[0]});
+        });
+    </script>
 @endsection

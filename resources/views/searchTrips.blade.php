@@ -386,6 +386,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('input[type=date]').attr({"min" : new Date().toISOString().split('T')[0]});
 
             $(".trip_type_menu").hide();
             $(".trip_type_menu input").prop( "disabled", true );
@@ -416,11 +417,13 @@
 
             tripTypeSelector.change(function() {
 
-                $(".trip_type_menu input").each(function() {
+                var tripTypeMenuInput = $(".trip_type_menu input");
+
+                tripTypeMenuInput.each(function() {
                     this.value = "";
                 });
                 $(".trip_type_menu").hide();
-                $(".trip_type_menu input").prop( "disabled", true );
+                tripTypeMenuInput.prop( "disabled", true );
 
                 var tripTypeValue = $(this).val().replace(/\s+/g, '_');
 
@@ -428,7 +431,5 @@
                 $('.'+tripTypeValue+'_menu'+" input").prop( "disabled", false );
             })
         });
-
-
     </script>
 @endsection

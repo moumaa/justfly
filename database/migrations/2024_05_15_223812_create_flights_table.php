@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('flights', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->foreignId('airline_id');
-            $table->integer('number')->nullable(false);
+            $table->integer('number')->unique('flights_number_unique')->nullable(false);
             $table->foreignId('departure_airport_id');
             $table->datetime('departure_time')->nullable(false);
             $table->foreignId('arrival_airport_id');
@@ -34,6 +34,7 @@ return new class extends Migration
     {
         try {
             Schema::table('flights', function (Blueprint $table) {
+                $table->dropUnique('flights_number_unique');
                 $table->dropForeign('airline_id');
                 $table->dropForeign('departure_airport_id');
                 $table->dropForeign('arrival_airport_id');
